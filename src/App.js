@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from "react";
+import { render } from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Edit from "./Components/Home/Edit/Edit";
+import Home from "./Components/Home/Home";
+export const UserContext = createContext();
 
 function App() {
+  const [specificId, setSpecificId] = useState({});
+  const [showModal, setShowModal] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider
+      value={{
+        specific: [specificId, setSpecificId],
+        modals: [showModal, setShowModal],
+      }}
+    >
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/edit/:id" element={<Edit />} />
+        </Routes>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 
