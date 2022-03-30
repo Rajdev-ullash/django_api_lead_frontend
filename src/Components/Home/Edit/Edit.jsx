@@ -95,8 +95,7 @@ const Edit = () => {
   return (
     <div className="body">
       <div class="form">
-        <div class="title">Welcome</div>
-        <div class="subtitle">Let's create your account!</div>
+        <div class="subtitle">Let's update your lead</div>
         <div class="input-container ic1">
           <input
             id="name"
